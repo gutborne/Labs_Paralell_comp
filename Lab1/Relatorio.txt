@@ -1,0 +1,5 @@
+						REPORT LAB 1
+-Deadlock's test:
+	1. Two process receiving at the same time: It generates a deadlock because both are waiting for receivement, but none of them are sending.
+	2. Two process sending at the same time: It doesnt generate deadlock due to the application buffer of one process sends the message directly to the system buffer of another process and once this system buffer posses the message, the communication with the aplication buffer is automatic, hence the deadlock doesnt happens. 
+  
