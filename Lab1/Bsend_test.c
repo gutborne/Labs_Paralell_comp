@@ -23,19 +23,19 @@ int main(int argc, char *argv[]){
     if (my_rank != 0) {
         sprintf(greeting, "Greetings from process %d of %d!\n", my_rank, total_process);
         MPI_Bsend(greeting, strlen(greeting)+1, MPI_CHAR, 0, 0, MPI_COMM_WORLD);
-        MPI_Buffer_detach(&buffer, &buffer_size);
-        free(buffer);
     }
     else {
         printf("Greetings from process %d of %d!\n", my_rank, total_process);
         for (int q = 1; q < total_process; q++){
             MPI_Recv(greeting, MAX_STRING, MPI_CHAR, q, 0, MPI_COMM_WORLD, &status);
-            printf("%s\n", greeting);
+            printf("%s", greeting);
         } //for
     }//else
     double ending = MPI_Wtime();
     double time_elapsed = ending - start;
     printf("process %d: last %f seconds!", my_rank, time_elapsed);
+    MPI_Buffer_detach(&buffer, &buffer_size);
+    free(buffer);
     MPI_Finalize();
     return 0;
 }

@@ -1,10 +1,14 @@
 								REPORT LAB 1
 -Deadlock's test:
 	1. Two process receiving at the same time: It generates a deadlock because both are waiting for receivement, but none of them are sending.
-	2. Two process sending at the same time: It doesnt generate deadlock due to the application buffer of one process sends the message directly 	to the system buffer of another process and once this system buffer posses the message, the communication with the aplication buffer is 		automatic, hence the deadlock doesnt happens. 
+	2. Two process sending at the same time: It doesnt generate deadlock due to the application buffer of one process sends the message directly to the system buffer of another process and once this system buffer possess the message, the communication with the aplication buffer is automatic, hence the deadlock doesnt happens. 
+-Types of send test:
+	1. Bsend(Buffered send): basically, this if a type of blocking send that is manually buffered. That means the user has to manage
+	how the buffer will behave when in the process of sending. This fact raises some tradeoffs because the user has to carefull allocate memory for the buffer, since if the buffer allocated to send the data is less than the data being sent, for example, this will lead to errors. On the other hand, Bsend will help us to achieve more performance when sending a message, due to the fact it won't be necessary to block the send and wait until the confirmation of the receiver.
+	2.Ssend(synchronous send): basically, this is a type of blocking send that, unlike Bsend, it isn't buffered. That means, we won't have the implicit or manual buffering like in mpi_send and mpi_bsend, respectively. What happens here is a synchronization between the sender and the receiver in which the sender will block until the receiver acknowledge the request from the sending process. Only when this happens, the message on the sender is sent. 
 -Topology test:
 	1. There's no package loss.
-	2. As for the time elapsed in each process, the variables "start", "ending" and "time_elapsed" were used to calculate that.  Then, time_elapsed = ending - start, being ending and start equals to MPI_Wtime(). Besides, considering the non-deterministic behavior of parallelism, all of the processes wil differ in terms of how much time they will take to execute their tasks. Then, bellow we have an example of an execution in which each will have their own time elapsed.
+	2. As for the time elapsed in each process, the variables "start", "ending" and "time_elapsed" were used to calculate that.  Then, time_elapsed = ending - start, being ending and start equals to MPI_Wtime(). Besides, considering the non-deterministic behavior of parallelism, all of the processes will differ in terms of how much time they will take to execute their tasks. Then, bellow we have an example of an execution in which each process will have their own time elapsed.
 RANK 0: FINISHED WITH 0.000942 SECONDS.
 RANK 1: FINISHED WITH 0.000873 SECONDS.
 RANK 2: FINISHED WITH 0.000898 SECONDS.
