@@ -1,0 +1,12 @@
+								REPORT LAB 1
+-Deadlock's test:
+	1. Two process receiving at the same time: It generates a deadlock because both are waiting for receivement, but none of them are sending.
+	2. Two process sending at the same time: It doesnt generate deadlock due to the application buffer of one process sends the message directly 	to the system buffer of another process and once this system buffer posses the message, the communication with the aplication buffer is 		automatic, hence the deadlock doesnt happens. 
+-Topology test:
+	1. There's no package loss.
+	2. As for the time elapsed in each process, the variables "start", "ending" and "time_elapsed" were used to calculate that.  Then, time_elapsed = ending - start, being ending and start equals to MPI_Wtime(). Besides, considering the non-deterministic behavior of parallelism, all of the processes wil differ in terms of how much time they will take to execute their tasks. Then, bellow we have an example of an execution in which each will have their own time elapsed.
+RANK 0: FINISHED WITH 0.000942 SECONDS.
+RANK 1: FINISHED WITH 0.000873 SECONDS.
+RANK 2: FINISHED WITH 0.000898 SECONDS.
+RANK 3: FINISHED WITH 0.000920 SECONDS.
+ 
